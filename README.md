@@ -1,1 +1,1 @@
-nhớ đổi / thành \\ ở chỗ đường dẫn file
+nhớ đổi / thành \\\ ở chỗ đường dẫn file
