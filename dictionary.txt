@@ -1,9 +1,9 @@
 @w@cat
 @t@1
-@m@meo
+@m@con meo
 @w@dog
 @t@1
-@m@cho
+@m@con cho
 @w@sun
 @t@1
 @m@mat troi
@@ -16,6 +16,9 @@
 @w@cow
 @t@1
 @m@con bo
-@w@penis
+@w@fly
+@t@2
+@m@bay bay
+@w@cow
 @t@1
-@m@con cu
+@m@con bo

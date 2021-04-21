@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<string.h>
 #include<stdlib.h>
+#include<ctype.h>
 typedef struct tu tu;
 struct tu {
 	char data[256];
@@ -33,7 +34,7 @@ int hash(char* str) {
 	int c;
 	while (c = *str++)
 		hash = ((hash << 5) + hash) + c;
-	return hash % 10000;
+	return hash%10000;
 }
 tu* themtu(char temp_word[256],int temp_type, char temp_meaning[256], tu* ptr) {
 	if (ptr == NULL) {
