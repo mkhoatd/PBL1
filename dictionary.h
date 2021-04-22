@@ -100,3 +100,17 @@ int countline(){
 	fclose(f);		
 	return i;
 }
+int check(char temp[256]){
+	int p=strlen(temp)-1;
+	for(int i=0;i<p;i++){
+		if(isalpha(temp[i])) continue;
+		else return 0;
+	}
+	return 1;
+}
+void chuyenthanhchuthuong(char temp[256]){
+	int p=strlen(temp);
+	for(int i=0;i<p;i++){
+		if(temp[i]>='A'&&temp[i]<='Z') temp[i]+=32;
+	}
+}
