@@ -63,7 +63,6 @@ MENU:
 		system("cls");
 		printf("********  SEARCHING  *********");
 		printf("\nEnter the word you want to find: ");
-		getchar();
 		fgets(word, 255, stdin); // word này có bi gi ko neu case 4 van dung
 		search(a[hash(word)], word);
 		printf("\n\nPress y to continue!\nPress b to back to menu!\nPress any key to exit! ");
@@ -85,14 +84,19 @@ MENU:
 		printf("\nEnter a word: ");
 		getchar();
 		fgets(word, 255, stdin);
-		fflush(stdin);
-		printf("\nEnter its type: ");
-		fgets(type, 255, stdin);
-		fflush(stdin);
-		printf("\nEnter its meaning: ");
-		fgets(mean, 255, stdin);
-		a[hash(word)] = addword(word, type, mean, a[hash(word)]);
-		printf("\nSuccess");
+		if(fastfind(a[hash(word)],word)){
+			printf("Tu da co trong tu dien");
+		}
+		else{
+			fflush(stdin);
+			printf("\nEnter its type: ");
+			fgets(type, 255, stdin);
+			fflush(stdin);
+			printf("\nEnter its meaning: ");
+			fgets(mean, 255, stdin);
+			a[hash(word)] = addword(word, type, mean, a[hash(word)]);
+			printf("\nSuccess");
+		}
 		printf("\n\nPress y to continue!\nPress b to back to menu!\nPress any key to exit! ");
 		fflush(stdin);
 		yes = getchar();
@@ -105,15 +109,19 @@ MENU:
 	}
 	case 5:
 	{
-	DELETE: // Delete a word in dictionary
+	DELETE: // xoa chua lam xong
 		FILE *f = fopen("test.txt", "a+");
 		system("cls");
 		printf("********  DELETE  *********");
 		printf("\nEnter the word you want to delete: ");
 		fflush(stdin);
-		gets(word);
+		fgets(word,255,stdin);
 		printf("word: %s", word);
-		// HAM DELETE
+		if(fastfind(a[hash(word)],word)){
+			delete_a(a[hash(word)],word);
+			printf("SUCCESS");
+		}
+		else printf("Tu can xoa khong co trong tu dien");
 		printf("\n\nPress y to continue!\nPress b to back to menu!\nPress any key to exit! ");
 		fflush(stdin);
 		yes = getchar();

@@ -84,7 +84,10 @@ void search(tu *a, char word[256])
 	char temp3[256];
 	if (a != NULL)
 	{
-		if(strcmp(word,a->data)!=0) return search(a->next,word);
+		if(strcmp(word,a->data)!=0){
+			search(a->next,word);
+			return;
+		}
 		strcpy(temp1, a->data);
 		strcpy(temp2, a->type);
 		strcpy(temp3, a->meaning);
@@ -125,7 +128,26 @@ tu *addword(char temp_word[256], char temp_type[256], char temp_meaning[256], tu
 	ptr->next = addword(temp_word, temp_type, temp_meaning, ptr->next);
 	return ptr;
 }
-
+int fastfind(tu* a,char word[256]){
+	if(a==NULL) return 0;
+	if(strcmp(a->data,word)!=0) return 0||fastfind(a->next,word);
+	return 1;
+}
+void delete_a(tu* a,char word[256]){
+	if(strcmp(a->data,word)==0){
+		if(a->next==NULL){
+			free(a);
+		}
+		tu* temp=a->next;
+		strcpy(a->data,a->next->data);
+		strcpy(a->meaning,a->next->meaning);
+		strcpy(a->type,a->next->type);
+		a->next=a->next->next;
+		free(temp);
+		return;
+	}
+	return delete_a(a->next,word);
+}
 int console()
 {
 	float choose;
@@ -140,8 +162,8 @@ int console()
 		printf("*   6. Exit                               *\n");
 		printf("*******************************************\n");
 		printf("Choose your option: ");
-		fflush(stdin);
 		scanf("%f", &choose);
+		getchar();
 		if (!((choose == (int)choose) && (choose <= 6 && choose >= 1)))
 		{
 			system("cls");
